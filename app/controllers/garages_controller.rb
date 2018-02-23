@@ -1,7 +1,7 @@
 require './config/environment'
 
 
-class UsersController < ApplicationController
+class GaragesController < ApplicationController
 
     get '/garages' do
         redirect_if_not_logged_in
