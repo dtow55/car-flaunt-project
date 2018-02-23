@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
         set :session_secret, "secret"
         use Rack::Flash
     end
-
+    
     get '/' do
         erb :index
     end

@@ -1,2 +1,20 @@
 <!--PAGE HEADER-->
 <h1>Add Car: </h1>
+
+<!--NEW CAR FORM-->
+<form method="post" action="/cars">
+    Model:<input type="text" name="model"><br><br>
+    Manufacturer:<input type="text" name="manufacturer"><br><br>
+    Year:<input type="text" name="year"><br><br>
+    Garage:
+    <% current_user.garages.each do |garage| %>
+        <br><input type="radio" name="garage_id" value="<%= garage.id %>"><%= garage.name %>
+    <% end %><br><br>
+    <input type="submit" value="Create">
+</form>
+
+<!--FLASH MESSAGES-->
+<% if flash.has?(:message) %>
+  <font color="red"><%= flash[:message] %></font>
+<% end %>
+
