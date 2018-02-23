@@ -11,7 +11,6 @@ class CarsController < ApplicationController
 
     post '/cars' do
         if Car.valid_params?(params)
-            # Check Garage Capacity
             garage = Garage.find(params[:garage_id])
             if garage.cars.count == garage.capacity
                 flash[:message] = "That garage is full"
@@ -36,6 +35,43 @@ class CarsController < ApplicationController
     end
 
     patch '/cars/:id/edit' do
+        car = Car.find(params[:id])
+
+        if !params[:model].empty?
+            car.model = params[:model]
+            car.save
+        end
+
+        if !params[:manufacturer].empty?
+            car.manufacturer = params[:manufacturer]
+            car.save
+        end
+
+        if !params[:year].empty?
+            car.year = params[:year]
+            car.save
+        end
+
+        if !params[:garage_id].empty?
+
+            current_garage = Garage.find(car.garage_id)
+            selected_garage = Garage.find(params[:garage_id])
+            
+            # If user selects a different garage, do a capacity check
+            if selected_garage != current_garage
+                if selected_garage.cars.count == selected_garage.capacity
+                    flash[:message] = "That garage is full"
+                    redirect "cars/#{car.id}"
+                else
+                    car.garage = selected_garage
+                    car.save
+                end
+            end
+        end
+
+        flash[:message] = "Edits were successful"
+        redirect "/cars/#{car.id}"
+
         #check garage capacity
     end
 
@@ -43,6 +79,7 @@ class CarsController < ApplicationController
         car = Car.find(params[:id])
         garage = car.garage
         car.destroy
+        flash[:message] = "Successfully deleted car"
         redirect "/garages/#{garage.id}"
     end
 
