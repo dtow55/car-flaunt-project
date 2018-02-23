@@ -34,11 +34,14 @@ class CarsController < ApplicationController
     end
 
     patch '/cars/:id/edit' do
-
+        #check garage capacity
     end
 
     delete '/cars/:id/delete' do
-    
+        car = Car.find(params[:id])
+        garage = car.garage
+        car.destroy
+        redirect "/garages/#{garage.id}"
     end
 
 end

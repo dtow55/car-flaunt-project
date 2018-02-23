@@ -11,7 +11,7 @@
 <!--LIST CARS-->
 <h3>Cars:<br>
 <% @garage.cars.each do |car| %>
-    <%= car.year %> <%= car.manufacturer %> <%= car.model %><br>
+    <a href="/cars/<%= car.id %>"><%= car.year %> <%= car.manufacturer %> <%= car.model %></a><br>
 <% end %>
 
 <!--ADD CAR LINK-->
