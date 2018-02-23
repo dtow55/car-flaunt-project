@@ -17,7 +17,7 @@ end
 
 class Helpers
 
-    def self.is_logged_in?(session)
+    def self.logged_in?(session)
       !!session[:user_id]
     end
   
@@ -25,8 +25,10 @@ class Helpers
       User.find(session[:user_id])
     end
   
-    def self.valid_signup_info?(params)
-      params[:username] == "" || params[:password] == ""
+    def redirect_if_not_logged_in(session)
+        if !logged_in?(session)
+            # Redirect somehwere
+        end
     end
   
   end
