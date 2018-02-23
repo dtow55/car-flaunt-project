@@ -10,20 +10,35 @@ class CarsController < ApplicationController
     end
 
     post '/cars' do
-        binding.pry
         if Car.valid_params?(params)
-            car = Car.create(params)
-            #check for capacity of garage?
-            car.save
-            redirect "/cars/#{car.id}"
+            # Check Garage Capacity
+            garage = Garage.find(params[:garage_id])
+            if garage.cars.count == garage.capacity
+                flash[:message] = "That garage is full"
+                redirect '/cars/new'
+            else
+                car = Car.create(params)
+                car.save
+                redirect "/cars/#{car.id}"
+            end
         else
             flash[:message] = "Fields cannot be blank"
-            redirect '/garages/new'
+            redirect '/cars/new'
         end
     end
 
     get '/cars/:id' do
+        redirect_if_not_logged_in
         @car = Car.find(params[:id])
+        #show car (includes edit form)
+    end
+
+    patch '/cars/:id/edit' do
+
+    end
+
+    delete '/cars/:id/delete' do
+    
     end
 
 end
