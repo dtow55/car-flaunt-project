@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 3) do
 
   create_table "garages", force: :cascade do |t|
     t.string  "name"
-    t.string  "capacity"
+    t.integer "capacity"
     t.integer "user_id"
   end
 
