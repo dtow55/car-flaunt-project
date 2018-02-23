@@ -28,10 +28,11 @@ class CarsController < ApplicationController
 
     get '/cars/:id' do
         redirect_if_not_logged_in
+
         @car = Car.find(params[:id])
         @garage = @car.garage
+
         erb :'/cars/show'
-        #make owner into link so you can see a user's garages
     end
 
     patch '/cars/:id/edit' do
@@ -71,8 +72,6 @@ class CarsController < ApplicationController
 
         flash[:message] = "Edits were successful"
         redirect "/cars/#{car.id}"
-
-        #check garage capacity
     end
 
     delete '/cars/:id/delete' do

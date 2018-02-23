@@ -1,19 +1,33 @@
 <!--PAGE HEADER-->
-<h1>Welcome, <%= @user.username %>!</h1>
+<% if @user == current_user %>
+    <h1>Welcome, <%= @user.username %>!
+
+    <!--LOGOUT BUTTON-->
+    <form method="post" action="/users/<%= @user.id %>/logout">
+        <input type="submit" value="Log Out">
+    </form>
+    </h1>
+<% else %>
+    <h1><%= @user.username %></h1>
+<% end %>
 
 <!--LIST USER'S GARAGES-->
-<h3>Your Garages:</h3>
+<% if @user == current_user %>
+    <h3>Your Garages:
+<% else %>
+    <h3>Garages:
+<% end %><br>
 <%@user.garages.each do |garage|%>
     <a href="/garages/<%= garage.id %>"><%= garage.name %>, Capacity: <%= garage.capacity %></a><br>
-<%end%><br><br><br>
+<%end%>
 
+<% if @user == current_user %>
 <!--CREATE NEW GARAGE LINK-->
-<a href='/garages/new'>Create New Garage</a><br>
+    <a href='/garages/new'>Create New Garage</a><br><br><br><br><br>
+<% end %>
+</h3>
 
-<!--SEE ALL GARAGES LINK-->
-<a href='/garages'>See Everyone's Garages</a><br><br>
-
-<!--LOGOUT BUTTON-->
-<form method="post" action="/users/<%= @user.id %>/logout">
-    <input type="submit" value="Log Out">
-</form>
+<!--NAVIGATION LINKS-->
+<br><br><br><br><br><br>
+<a href="/users/<%= current_user.id %>">Go To --> User Home</a><br>
+<a href="/garages">Go To --> See Everyone's Garages</a>

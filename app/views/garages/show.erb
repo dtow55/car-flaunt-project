@@ -8,13 +8,13 @@
 
 <h3>
 <!--OWNER-->
-Owner: <%= @garage.user.username %><br>
+Owner: <a href="/users/<%= @garage.user.id %>"><%= @garage.user.username %></a><br>
 
 <!--CAPACITY-->
 Capacity: <%= @garage.capacity %><br>
 
 <!--LIST CARS-->
-Cars:<br>
+Cars:
 <% @garage.cars.each do |car| %>
     <a href="/cars/<%= car.id %>"><%= car.year %> <%= car.manufacturer %> <%= car.model %></a><br>
 <% end %>
@@ -26,8 +26,8 @@ Cars:<br>
 </h3>
 
 <!--EDIT GARAGE-->
-<h3>Edit Garage Information:</h3>
 <% if @garage.user == current_user %>
+<h3>Edit Garage Information:</h3>
     <form method="post" action="/garages/<%= @garage.id %>/edit">
         <input id="hidden" type="hidden" name="_method" value=patch>
         Name:<input type="text" name="name"><br>

@@ -41,12 +41,17 @@ class UsersController < ApplicationController
 
     post '/users/:id/logout' do
         redirect_if_not_logged_in
+
         session.clear
-        redirect '/login'
+
+        redirect '/'
     end 
 
     get '/users/:id' do
+        redirect_if_not_logged_in
+
         @user = User.find(params[:id])
+
         erb :'/users/show'
     end
 

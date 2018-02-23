@@ -2,15 +2,15 @@
 <h1><%= @car.year %> <%= @car.manufacturer %> <%= @car.model %></h1>
 
 <!--OWNER-->
-<h3>Owner: <%= @garage.user.username %> <br>
+<h3>Owner: <a href="/users/<%=@garage.user.id%>"><%= @garage.user.username %></a><br>
 
 <!--GARAGE-->
 Garage: <a href="/garages/<%= @garage.id %>"><%= @garage.name %></a></h3>
 <br><br>
 
 <!--EDIT CAR-->
-<h3>Edit Car Information:</h3>
 <% if @garage.user == current_user %>
+<h3>Edit Car Information:</h3>
     <form method="post" action="/cars/<%= @car.id %>/edit">
         <input id="hidden" type="hidden" name="_method" value=patch>
         Model:<input type="text" name="model"><br>
