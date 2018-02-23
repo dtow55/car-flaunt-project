@@ -7,28 +7,35 @@ class ApplicationController < Sinatra::Base
         set :views, 'app/views'
         enable :sessions
         set :session_secret, "secret"
+        use Rack::Flash
     end
 
     get '/' do
         erb :index
     end
 
-end
+    helpers do 
 
-class Helpers
-
-    def self.logged_in?(session)
-      !!session[:user_id]
-    end
-  
-    def self.current_user(session)
-      User.find(session[:user_id])
-    end
-  
-    def redirect_if_not_logged_in(session)
-        if !logged_in?(session)
-            # Redirect somehwere
+        def logged_in?
+            !!session[:user_id]
+          end
+        
+        def current_user
+            User.find(session[:user_id])
         end
+    
+        def redirect_if_not_logged_in
+            if !logged_in?
+                redirect '/login'
+            end
+        end
+
+        def redirect_if_logged_in
+            if logged_in?
+                redirect "users/#{session[:user_id]}"
+            end
+        end
+
     end
-  
-  end
+
+end

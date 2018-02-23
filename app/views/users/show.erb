@@ -1,0 +1,16 @@
+<!--PAGE HEADER-->
+<h1><%=@user.username%></h1>
+
+<!--LIST USER'S GARAGES-->
+<h3>Your Garages:</h3>
+<%@user.garages.each do |garage|%>
+    <%=garage.name%>, Capacity: <%=garage.capacity%><br>
+<%end%>
+
+<!--SEE ALL GARAGES LINK-->
+<a href='/garages'>See All Garages</a><br><br>
+
+<!--LOGOUT BUTTON-->
+<form method="post" action="/users/<%=@user.id%>/logout">
+    <input type="submit" value="Log Out">
+</form>

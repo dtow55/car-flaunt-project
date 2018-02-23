@@ -1,0 +1,7 @@
+<!--PAGE HEADER-->
+<h1>Garages: </h1>
+
+<!--SHOW ALL USER GARAGES-->
+<%@garages.each do |garage|%>
+    <a href="/garages/<%= garage.id %>"><%= garage.name %>, Capacity: <%= garage.capacity %></a><br>
+<%end%>
