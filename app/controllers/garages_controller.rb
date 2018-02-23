@@ -37,4 +37,27 @@ class UsersController < ApplicationController
         erb :'/garages/show'
     end
 
+    delete '/garages/:id/delete' do
+        Garage.find(params[:id]).destroy
+        flash[:message] = "Successfully deleted garage"
+        redirect '/garages'
+    end
+
+    patch '/garages/:id/edit' do
+        garage = Garage.find(params[:id])
+
+        if !params[:name].empty?
+            garage.name = params[:name]
+            garage.save
+        end
+
+        if !params[:capacity].empty?
+            garage.capacity = params[:capacity]
+            garage.save
+        end
+
+        flash[:message] = "Edits were successful"
+        redirect "/garages/#{garage.id}"
+    end
+
 end

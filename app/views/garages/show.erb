@@ -1,3 +1,8 @@
+<!--FLASH MESSAGES-->
+<% if flash.has?(:message) %>
+  <font color="red"><%= flash[:message] %></font>
+<% end %>
+
 <!--PAGE HEADER-->
 <h1><%= @garage.name %></h1>
 <h3>Capacity: <%= @garage.capacity %></h3>
@@ -6,10 +11,34 @@
 <!--LIST CARS-->
 <h3>Cars:</h3>
 <% @garage.cars.each do |car| %>
-
+    <%= car.year %> <%= car.manufacturer %> <%= car.model %>
 <% end %>
 
 <!--ADD CAR LINK-->
-<form method="get" action="/car/new">
-    <input type="submit" value="Add a Car">
-</form>
+<% if @garage.user == current_user %>
+    <a href="/cars/new">Add a Car</a><br><br><br>
+<% end %>
+
+<!--EDIT GARAGE-->
+<h3>Edit Garage Information:</h3>
+<% if @garage.user == current_user %>
+    <form method="post" action="/garages/<%= @garage.id %>/edit">
+        <input id="hidden" type="hidden" name="_method" value=patch>
+        Name:<input type="text" name="name"><br>
+        Capacity:<input type="text" name="capacity"><br><br>
+        <input type="submit" value="Edit Garage">
+    </form>
+<% end %>
+
+<!--DELETE GARAGE-->
+<% if @garage.user == current_user %>
+    <form method="post" action="/garages/<%= @garage.id %>/delete">
+        <input id="hidden" type="hidden" name="_method" value=delete>
+        <input type="submit" value="Delete Garage">
+    </form>
+<% end %>
+
+<!--NAVIGATION LINKS-->
+<br><br>
+<a href="/users/<%= current_user.id %>">Go To --> User Home</a><br>
+<a href="/garages">Go To --> See Everyone's Garages</a>

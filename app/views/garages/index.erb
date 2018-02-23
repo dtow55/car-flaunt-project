@@ -1,7 +1,19 @@
+<!--FLASH MESSAGES-->
+<% if flash.has?(:message) %>
+  <font color="red"><%= flash[:message] %></font>
+<% end %>
+
 <!--PAGE HEADER-->
 <h1>Garages: </h1>
 
 <!--SHOW ALL USER GARAGES-->
 <%@garages.each do |garage|%>
-    <a href="/garages/<%= garage.id %>"><%= garage.name %>, Capacity: <%= garage.capacity %></a><br>
+    <a href="/garages/<%= garage.id %>"><%= garage.name %>, Capacity: <%= garage.capacity %>, Owner: <%= garage.user.username %></a><br>
 <%end%>
+
+<!--CREATE NEW GARAGE LINK-->
+<br><a href='/garages/new'>Create New Garage</a><br>
+
+<!--NAVIGATION LINKS-->
+<br><br>
+<a href="/users/<%= current_user.id %>">Go To --> User Home</a><br>
