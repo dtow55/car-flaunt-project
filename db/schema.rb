@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 3) do
+
+  create_table "cars", force: :cascade do |t|
+    t.string  "model"
+    t.string  "manufacturer"
+    t.string  "year"
+    t.integer "garage_id"
+  end
+
+  create_table "garages", force: :cascade do |t|
+    t.string  "name"
+    t.string  "capacity"
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
