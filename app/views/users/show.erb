@@ -5,7 +5,7 @@
 <h3>Your Garages:</h3>
 <%@user.garages.each do |garage|%>
     <a href="/garages/<%= garage.id %>"><%= garage.name %>, Capacity: <%= garage.capacity %></a><br>
-<%end%><br>
+<%end%><br><br><br>
 
 <!--CREATE NEW GARAGE LINK-->
 <a href='/garages/new'>Create New Garage</a><br>

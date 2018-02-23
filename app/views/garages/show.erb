@@ -16,7 +16,7 @@
 
 <!--ADD CAR LINK-->
 <% if @garage.user == current_user %>
-    <a href="/cars/new">Add a Car</a><br><br><br>
+    <a href="/cars/new">Add a Car</a><br><br><br><br><br><br><br>
 <% end %>
 
 <!--EDIT GARAGE-->
@@ -39,6 +39,6 @@
 <% end %>
 
 <!--NAVIGATION LINKS-->
-<br><br>
+<br><br><br><br><br><br>
 <a href="/users/<%= current_user.id %>">Go To --> User Home</a><br>
 <a href="/garages">Go To --> See Everyone's Garages</a>
