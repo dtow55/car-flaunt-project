@@ -5,18 +5,23 @@
 
 <!--PAGE HEADER-->
 <h1><%= @garage.name %></h1>
-<h3>Capacity: <%= @garage.capacity %></h3>
-<h3>Owner: <%= @garage.user.username %></h3>
+
+<h3>
+<!--OWNER-->
+Owner: <%= @garage.user.username %><br>
+
+<!--CAPACITY-->
+Capacity: <%= @garage.capacity %><br>
 
 <!--LIST CARS-->
-<h3>Cars:<br>
+Cars:<br>
 <% @garage.cars.each do |car| %>
     <a href="/cars/<%= car.id %>"><%= car.year %> <%= car.manufacturer %> <%= car.model %></a><br>
 <% end %>
 
 <!--ADD CAR LINK-->
 <% if @garage.user == current_user %>
-    <a href="/cars/new">Add a Car</a><br><br><br><br><br><br><br>
+    <a href="/cars/new">Add a Car</a><br><br><br><br><br>
 <% end %>
 </h3>
 

@@ -30,7 +30,8 @@ class CarsController < ApplicationController
     get '/cars/:id' do
         redirect_if_not_logged_in
         @car = Car.find(params[:id])
-        #show car (includes edit form)
+        @garage = @car.garage
+        erb :'/cars/show'
     end
 
     patch '/cars/:id/edit' do

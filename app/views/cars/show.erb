@@ -1,0 +1,8 @@
+<!--PAGE HEADER-->
+<h1><%= @car.year %> <%= @car.manufacturer %> <%= @car.model %></h1>
+
+<!--OWNER-->
+<h3>Owner: <%= @garage.user.username %> <br>
+
+<!--GARAGE-->
+Garage: <a href="/garages/<%= @garage.id %>"><%= @garage.name %></a></h3>
