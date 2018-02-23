@@ -1,2 +1,14 @@
 <!--PAGE HEADER-->
 <h1>Create New Garage: </h1>
+
+<!--NEW GARAGE FORM-->
+<form method="post" action="/garages">
+    Name:<input type="text" name="name"><br><br>
+    Capacity:<input type="text" name="capacity"><br><br>
+    <input type="submit" value="Create">
+</form>
+
+<!--FLASH MESSAGES-->
+<% if flash.has?(:message) %>
+  <font color="red"><%= flash[:message] %></font>
+<% end %>

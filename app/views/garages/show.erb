@@ -1,0 +1,15 @@
+<!--PAGE HEADER-->
+<h1><%= @garage.name %></h1>
+<h3>Capacity: <%= @garage.capacity %></h3>
+<h3>Owner: <%= @garage.user.username %></h3>
+
+<!--LIST CARS-->
+<h3>Cars:</h3>
+<% @garage.cars.each do |car| %>
+
+<% end %>
+
+<!--ADD CAR LINK-->
+<form method="get" action="/car/new">
+    <input type="submit" value="Add a Car">
+</form>
