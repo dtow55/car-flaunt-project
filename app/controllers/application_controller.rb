@@ -14,6 +14,14 @@ class ApplicationController < Sinatra::Base
         erb :index
     end
 
+    # Developer route; not to be used by users. 
+    get '/clear' do
+        session.clear
+        User.destroy_all
+        Garage.destroy_all
+        Car.destroy_all
+    end
+
     helpers do 
 
         def logged_in?
