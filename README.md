@@ -1,15 +1,15 @@
-# Online::Marketplace
+# Car::Flaunt
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/online/marketplace`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/car_flaunt`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+Car Flaunt is a Ruby Web Application that allows users to publicly post the cars they own, organized by garages. This makes Car Flaunt a great resource to show off an impressive car collection to others, or to become jealous of others' collections if they're more impressive than yours. 
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'online-marketplace'
+gem 'car-flaunt'
 ```
 
 And then execute:
@@ -18,11 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install online-marketplace
-
-## Usage
-
-TODO: Write usage instructions here
+    $ gem install car-flaunt
 
 ## Development
 
